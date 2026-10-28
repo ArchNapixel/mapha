@@ -4,14 +4,14 @@ const steps = ["Visit a real spot", "Tap “Mark as visited”", "Earn a stamp a
 
 export default function Home() {
   return (
-    <main className="relative h-dvh w-full overflow-hidden bg-sea font-sans">
+    <main className="sea relative h-dvh w-full overflow-hidden font-sans">
       <h1 className="sr-only">MaPHo: collect the Philippines, one stamp at a time</h1>
 
       <PhilippinesMap
         intro={
           <>
             <p className="text-sm font-semibold uppercase tracking-wider text-accent">Now open in Davao</p>
-            <p className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            <p className="font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               Collect the Philippines, one stamp at a time.
             </p>
             <p className="text-muted lg:text-lg">
@@ -32,11 +32,11 @@ export default function Home() {
         }
       />
 
-      <span className="pointer-events-none absolute left-4 top-4 text-xl font-bold tracking-tight lg:left-12">
-        Ma<span className="text-accent">PH</span>o
+      <span className="pointer-events-none absolute left-4 top-3 rounded-full bg-foreground px-3.5 py-1 font-display text-xl font-extrabold tracking-tight text-white shadow-md lg:left-12">
+        Ma<span className="text-[#ffa94d]">PH</span>o
       </span>
 
-      <p className="absolute inset-x-4 bottom-2 text-[10px] text-muted sm:text-xs lg:left-12">
+      <p className="absolute inset-x-4 bottom-2 text-[10px] text-white/80 sm:text-xs lg:left-12">
         Boundaries: NAMRIA and PSA via OCHA (COD-AB), CC BY-IGO, prepared by faeldon/philippines-json-maps
         (PSGC 2026-3Q).
       </p>

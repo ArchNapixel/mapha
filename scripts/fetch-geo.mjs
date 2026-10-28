@@ -30,7 +30,7 @@ await mkdir("public/geo", { recursive: true });
 const country = await get("country/lowres/country.0.001.json");
 await writeFile("public/geo/regions.json", JSON.stringify(slim(country.features, "adm1_psgc", "adm1_en")));
 
-const provinces = await Promise.all(DAVAO_PROVINCES.map((p) => get(`provdists/lowres/municities-provdist-${p}.0.001.json`)));
+const provinces = await Promise.all(DAVAO_PROVINCES.map((p) => get(`provdists/medres/municities-provdist-${p}.0.01.json`)));
 const cities = provinces.flatMap((p) => p.features);
 await writeFile("public/geo/davao-region.json", JSON.stringify(slim(cities, "adm3_psgc", "adm3_en")));
 

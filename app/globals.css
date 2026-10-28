@@ -1,12 +1,19 @@
 @import "tailwindcss";
 
+/* Light theme only for now. dark: classes only apply under a .dark class, which nothing sets. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #f6f8fb;
-  --foreground: #14213d;
+  color-scheme: light;
+  --background: #f7f1e6; /* warm sand */
+  --foreground: #14213d; /* ink navy */
   --surface: #ffffff;
-  --muted: #5b6b82;
-  --sea: #d9ecf7;
-  --accent: #d9480f;
+  --muted: #5f6b7a;
+  --accent: #c8500a; /* sunset orange, dark enough for white text */
+  --stamp: #c92a2a; /* passport stamp red */
+  --sea-1: #c8eef0;
+  --sea-2: #7cc8d3;
+  --sea-3: #2f8aa6;
 }
 
 @theme inline {
@@ -14,24 +21,45 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-muted: var(--muted);
-  --color-sea: var(--sea);
   --color-accent: var(--accent);
+  --color-stamp: var(--stamp);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b1220;
-    --foreground: #e7edf5;
-    --surface: #16203a;
-    --muted: #9aa8bd;
-    --sea: #10233d;
-    --accent: #f2a93b;
-  }
+  --font-display: var(--font-jakarta);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Shallow tropical water, lighter near the islands. */
+.sea {
+  background: radial-gradient(120% 90% at 50% 40%, var(--sea-1), var(--sea-2) 55%, var(--sea-3));
+}
+
+/* Stamp thumps down, holds, fades. Reduced motion: just appears and fades. */
+.stamp {
+  animation: stamp 1.4s ease-out both;
+}
+@keyframes stamp {
+  0% { opacity: 0; transform: scale(1.8) rotate(-18deg); }
+  18% { opacity: 1; transform: scale(0.95) rotate(-8deg); }
+  26% { transform: scale(1) rotate(-8deg); }
+  80% { opacity: 1; transform: scale(1) rotate(-8deg); }
+  100% { opacity: 0; transform: scale(1) rotate(-8deg); }
+}
+
+.confetti {
+  animation: confetti 2.4s cubic-bezier(0.3, 0.6, 0.6, 1) both;
+}
+@keyframes confetti {
+  to { transform: translate(var(--drift), 110vh) rotate(720deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes stamp {
+    0%, 80% { opacity: 1; transform: rotate(-8deg); }
+    100% { opacity: 0; transform: rotate(-8deg); }
+  }
 }
